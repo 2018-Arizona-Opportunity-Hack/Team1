@@ -39,3 +39,5 @@ class PivotTableContainer extends React.Component<any, PivotTableState> {
 
     }
 }
+
+export default PivotTableContainer;
