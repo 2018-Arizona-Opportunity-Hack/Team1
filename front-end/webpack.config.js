@@ -2,41 +2,29 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-          exclude: /(node_modules)/,
-          use: [
+    mode: 'production',
+    entry: './src/index.tsx',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        rules: [
             {
-              loader: 'babel-loader',
-              options: {
-                presets: ['react']
-              }
+                test: /\.tsx?$/,
+                exclude: /(node_modules)/,
+                use: [ { loader: 'ts-loader' } ],
+            },
+            {
+                test: /\.(css|less)$/,
+                exclude: /(node_modules)/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' }
+                ]
             }
-          ]
-      },
-      {
-        test:  /\.js$/,
-        exclude: /node_modules/,
-        use: ['eslint-loader']
-      },
-      {
-        test: /\.(css|less)$/,
-        exclude: /(node_modules)/,
-        use: [
-            { loader: 'style-loader' },
-            { loader: 'css-loader' },
-            { loader: 'less-loader' }
         ]
-      }
-    ]
-  },
-  performance: { hints: false }
+    },
+    performance: { hints: false }
 };
