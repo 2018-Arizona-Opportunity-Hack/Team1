@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 
-export default class MainApp extends React.Component {
+export default class MainApp extends React.Component<{}> {
     constructor(props: any) {
         super(props);
     }
