@@ -1,24 +1,15 @@
-var Binary = require('mongodb').Binary;
 var fs = require('fs')
 
 // File Binary Utils:
 
 exports.convertFileToBinary = function( filePath )
 {
-    try 
-    {
-        var theFileData = fs.readFileSync( filePath );
-        return Binary( theFileData );
-    }
-    catch ( error ) 
-    {
-        throw error;
-    }
+
 }
 
 exports.convertBinaryToFile = function( fileData )
 {
-    fs.writeFile('temp_file.gif', fileData, function(err) { if(err) { throw err } } )
+
 }
 
 exports.exportToFile = async function( fileName, file, res )

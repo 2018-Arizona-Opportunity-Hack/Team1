@@ -14,6 +14,6 @@ router.get('/basic-post', BasicPostController.ReadBasicPosts);
 router.post('/basic-post', BasicPostController.CreateBasicPosts);
 
 // File Upload
-router.post('/upload-gif', BasicPostController.UploadGif);
+router.post('/upload-csv', BasicPostController.UploadGif);
 
 module.exports = router;

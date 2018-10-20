@@ -4,16 +4,16 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var busboy = require('connect-busboy');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('./sqllite_db/appdb.db');
 
 // set the root directory
 var app = express();
 
-// connect to mongoose here
-var mongoose = require('mongoose')
-mongoose.Promise = bluebird
-mongoose.connect('mongodb://127.0.0.1:27017/basic-posts', { useNewUrlParser: true   })
-  .then(() => {console.log("Successful MongoDB connection")})
-  .catch(() => {console.log("Failure MongoDB connection")});  
+// set up the sql server:
+db.serialize(function() {
+  console.log("SQLLite server succssfully started");
+});
 
 // Disable CORS since our app is on a separate domain (port 8001)
 app.use(function(req,res,next) {
@@ -42,5 +42,7 @@ app.use('/api', mainApi);
 
 var port = (process.env.PORT || 8000);
 app.listen(port);
+
+console.log("server running on port 8000");
 
 module.exports = app;
