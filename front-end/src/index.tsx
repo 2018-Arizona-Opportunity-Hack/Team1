@@ -12,23 +12,26 @@ interface State {
     files: File[];
 }
 
-export default class MainApp extends React.Component<{}, State> {
+class MainApp extends React.Component<{}, State> {
     constructor(props: any) {
         super(props);
         
         this.returnFileList = this.returnFileList.bind(this);
+        this.state = {
+            files: []
+        }
     }
 
     returnFileList(fileList: File[]) {
-        this.setState((state: State) => {files: fileList});
-        console.log(this.state);
+        this.setState((state) => {
+            return { files: fileList.concat(state.files) }
+        });
     }
 
     render() {
         // test code remove
-        var mCSVUtil: CSVUtils = new CSVUtils();
-        mCSVUtil.readCSV("./FL_insurance_sample.csv");
-        
+        // var mCSVUtil: CSVUtils = new CSVUtils();
+        // mCSVUtil.readCSV("./FL_insurance_sample.csv");
         return <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />;
     }
 }
