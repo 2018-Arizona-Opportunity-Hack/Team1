@@ -22,8 +22,8 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-react": "^7.10.0",
     "less-loader": "^4.1.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "style-loader": "^0.21.0",
     "ts-loader": "^5.2.2",
     "webpack": "^4.16.2",
@@ -39,7 +39,10 @@
     "fs": "0.0.1-security",
     "jss": "^9.8.7",
     "less": "^3.8.0",
+    "plotly.js": "^1.41.3",
     "prop-types": "^15.6.2",
+    "react-pivottable": "^0.7.0",
+    "react-plotly.js": "^2.2.0",
     "scroll-into-view-if-needed": "^2.2.16",
     "typescript": "^3.1.3"
   }
