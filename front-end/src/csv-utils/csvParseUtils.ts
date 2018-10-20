@@ -1,11 +1,14 @@
-import { CSVParser } from 'csv-parser'
-import { fs } from 'fs'
+import * as CSVParser from 'csv-parser'
+import * as fs from 'fs'
 
-class CSVUtils
+export class CSVUtils
 {
-    readCSV( aCSVPath : String )
+    constructor() { }
+
+    readCSV( aCSVPath : string )
     {
-        var theCSVResults = []
+        var aCSVUrl : URL = new URL( aCSVPath );
+        var theCSVResults: any = [] 
 
         fs.createReadStream( aCSVPath )
             .pipe( CSVParser() )
