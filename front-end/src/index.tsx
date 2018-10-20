@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 
 export default class MainApp extends React.Component {
     constructor(props: any) {
-        super(props)
+        super(props);
     }
     render() {
         return <div>TEST</div>;
