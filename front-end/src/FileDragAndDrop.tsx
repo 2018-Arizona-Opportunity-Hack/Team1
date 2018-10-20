@@ -2,23 +2,29 @@ import * as React from 'react';
 
 class FileDragAndDrop extends React.Component<{}> {
   constructor() {
-    super();
+    super({});
   }
 
-  dropHandler(event: Event) {
-    console.log('Dropped a file'); // eslint-disable-line
+  dropHandler(event: React.DragEvent) {
+    console.log('Dropped a file');
 
     event.preventDefault();
 
     if (event.dataTransfer.items) {
-      console.log('Shit'); // eslint-disable-line
+      console.log('Shit');
     }
 
     this.removeDragData(event);
   }
 
-  removeDragData(event: Event) {
-    console.log('Removing drag data'); // eslint-disable-line
+  dragOverHandler(event: React.DragEvent) {
+    console.log('File(s) in drop zone');
+
+    event.preventDefault();
+  }
+
+  removeDragData(event: React.DragEvent) {
+    console.log('Removing drag data');
 
     if (event.dataTransfer.items) {
       event.dataTransfer.items.clear();
@@ -28,7 +34,13 @@ class FileDragAndDrop extends React.Component<{}> {
   }
 
   render() {
-    return <div onDrop={this.dropHandler(event)} />;
+    return (
+      <div
+        className='drop_zone'
+        onDrop={(event: React.DragEvent) => this.dropHandler(event)}
+        onDrag={(event: React.DragEvent) => this.dragOverHandler(event)}
+      />
+    );
   }
 }
 
