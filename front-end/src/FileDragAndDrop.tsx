@@ -1,8 +1,12 @@
 import * as React from 'react';
 
-class FileDragAndDrop extends React.Component<{}> {
-  constructor() {
-    super({});
+interface Props {
+  returnFileList: Function;
+}
+
+class FileDragAndDrop extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
   }
 
   dropHandler(event: React.DragEvent) {
@@ -10,10 +14,27 @@ class FileDragAndDrop extends React.Component<{}> {
 
     event.preventDefault();
 
+    let newFileList = [];
+
     if (event.dataTransfer.items) {
+      let fileList = event.dataTransfer.items;
       console.log('Shit');
+      for (let i = 0; i < fileList.length; i++) {
+        if (fileList[i].kind == 'file') {
+          let file = fileList[i].getAsFile();
+          newFileList.push(file);
+          console.log('File name: ' + file.name);
+        }
+      }
+    } else {
+      for (let i = 0; i < event.dataTransfer.files.length; i++) {
+        newFileList.push(event.dataTransfer.files[i]);
+        console.log('File name: ' + event.dataTransfer.files[i].name);
+      }
     }
 
+    this.props.returnFileList(newFileList);
+    
     this.removeDragData(event);
   }
 
