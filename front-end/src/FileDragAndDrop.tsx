@@ -5,21 +5,56 @@ interface Props {
   returnFileList: Function;
 }
 
-class FileDragAndDrop extends React.Component<Props> {
+interface State {
+  draggingOver: Boolean;
+}
+
+class FileDragAndDrop extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      draggingOver: false
+    };
+  }
+
+  onDragEnter() {
+    this.setState({ draggingOver: true });
+  }
+
+  onDragLeave() {
+    this.setState({ draggingOver: false });
   }
 
   onDrop(files: []) {
-    console.log(files);
     this.props.returnFileList(files);
+    this.setState({ draggingOver: false });
   }
-  
+
   render() {
+    const { draggingOver } = this.state;
+    const overlayStyle = {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      padding: '2.5em 0',
+      background: 'rgba(0,0,0,0.5)',
+      textAlign: 'center',
+      color: '#fff'
+    };
+
     return (
-      <div>
-        <Dropzone onDrop={this.onDrop.bind(this)}/>
-      </div>
+        <Dropzone 
+          className='drop_zone'
+          disableClick
+          onDrop={this.onDrop.bind(this)}
+          onDragEnter={this.onDragEnter.bind(this)}
+          onDragLeave={this.onDragLeave.bind(this)}
+        >
+          {draggingOver && <div style={overlayStyle}>{'Drop files...'}</div>}
+        </Dropzone>
     );
   }
 }
