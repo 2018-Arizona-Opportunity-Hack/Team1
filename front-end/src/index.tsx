@@ -12,8 +12,8 @@ export default class MainApp extends React.Component<{}> {
     }
     render() {
         // test code remove
-        //var mCSVUtil: CSVUtils = new CSVUtils();
-        //mCSVUtil.readCSV("./FL_insurance_sample.csv")
+        var mCSVUtil: CSVUtils = new CSVUtils();
+        mCSVUtil.readCSV("./FL_insurance_sample.csv")
 
         return <div>TEST</div>;
     }
