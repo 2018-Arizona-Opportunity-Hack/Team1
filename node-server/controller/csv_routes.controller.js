@@ -57,7 +57,7 @@ exports.CreateBasicPosts = async function(req, res, next) {
     }
 }
 
-exports.UploadGif = async function(req, res, next) {
+exports.UploadCSV = async function(req, res, next) {
     console.log("UPLOADING GIF");
 
     var busboy = new Busboy( { headers: req.headers });
