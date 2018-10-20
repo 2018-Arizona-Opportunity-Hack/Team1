@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router()
+var CSVRoutes = require('./csv_routes.routes');
 
-var BasicPostRoutes = require('./basic_post.routes');
-
-router.use('/main-post', BasicPostRoutes);
+router.use('/csv', CSVRoutes);
 
 module.exports = router;

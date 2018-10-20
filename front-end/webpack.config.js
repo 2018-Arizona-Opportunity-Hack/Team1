@@ -2,6 +2,12 @@
 const path = require('path');
 
 module.exports = {
+    resolve: {
+        extensions: ['.ts', '.js', '.json']
+    },
+    node: {
+        fs: 'empty'
+    },
     mode: 'production',
     entry: './src/index.tsx',
     output: {
