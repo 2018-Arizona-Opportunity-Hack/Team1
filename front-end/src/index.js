@@ -136,10 +136,8 @@ class MainApp extends React.Component {
             </div>
             <div className='col-md-5 p-lg-5 mx-auto my-5'>
               <h1 className='display-4 font-weight-normal'> Progress Tracker </h1>
-              <p className='lead font-weight-normal'> Drag a CSV File Here!</p>
+              <p className='lead font-weight-normal'> Drag a CSV File Here to Begin</p>
             </div>
-            <div className='product-device box-shadow d-none d-md-block' />
-            <div className='product-device product-device-2 box-shadow d-none d-md-block' />
           </div>
 
           {!this.state.chartVisible ?
@@ -149,7 +147,7 @@ class MainApp extends React.Component {
                 <div className='card-deck mb-5 text-center width-100-percent mr0 ml0'>
                   <div className='card mb-5 box-shadow'>
                     <div className='card-header'>
-                      <h4 className='my-0 font-weight-normal'> Bar Chart </h4>
+                      <h4 className='my-0 font-weight-normal'></h4>
                     </div>
                     <div className='card-body'>
                       <Chart
@@ -162,7 +160,7 @@ class MainApp extends React.Component {
                   </div>
                   <div className='card mb-5 box-shadow'>
                     <div className='card-header'>
-                      <h4 className='my-0 font-weight-normal'> Line Chart </h4>
+                      <h4 className='my-0 font-weight-normal'> </h4>
                     </div>
                     <div className='card-body'>
                       <Chart
@@ -175,7 +173,7 @@ class MainApp extends React.Component {
                   </div>
                   <div className='card mb-5 box-shadow'>
                     <div className='card-header'>
-                      <h4 className='my-0 font-weight-normal'> Pie Chart </h4>
+                      <h4 className='my-0 font-weight-normal'></h4>
                     </div>
                     <div className='card-body'>
                       <Chart
