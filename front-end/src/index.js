@@ -8,8 +8,6 @@ import FileDragAndDrop from './FileDragAndDrop';
 
 import '../styles/styles.less';
 
-const data = [['attribute', 'attribute2'], ['value1', 'value2']];
-
 class MainApp extends React.Component {
   constructor(props) {
     super(props);

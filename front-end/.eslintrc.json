@@ -21,30 +21,6 @@
       "import",
       "react"
   ],
-  "rules": {
-    "eqeqeq": 2,
-    "indent": [2, 2, { "SwitchCase": 1 }],       
-    "import/order": 2,
-    "linebreak-style": [
-        "error",
-        "windows"
-    ],
-    "no-trailing-spaces": 2,
-    "no-lonely-if": 2,
-    "no-else-return": 2,
-    "object-curly-spacing": [2, "always"],
-    "quotes": [2, "single"],
-    "semi": 2,
-    "space-before-blocks": 2,
-    "space-before-function-paren": [2, { "named": "never", "anonymous": "never" }],
-    "space-in-parens": 2,
-    "space-infix-ops": 2,
-    "spaced-comment": 2,
-    "react/sort-prop-types": [2],
-    "react/jsx-tag-spacing": 2,
-    "jsx-quotes": [2, "prefer-single"],
-    "react/self-closing-comp": 2
-  },
   "settings": {
       "react": {
           "version" : "16.0.0"

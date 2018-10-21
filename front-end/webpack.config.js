@@ -1,6 +1,6 @@
 /* eslint-disable */
 const path = require('path');
-const webpack = require('webpack');;
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'production',
@@ -38,10 +38,5 @@ module.exports = {
             }
         ]
     },
-    performance: { hints: false },
-    plugins: [
-        new webpack.WatchIgnorePlugin([
-            /\.js$/
-        ])
-    ]
+    performance: { hints: false }
 };
