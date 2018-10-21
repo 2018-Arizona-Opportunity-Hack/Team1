@@ -204,11 +204,12 @@ class MainApp extends React.Component {
                   </ul>
                 </div>
               </div>
+              
+              <div style={{ float:'left', clear: 'both' }}
+                ref={(el) => { this.messagesEnd = el; }} />
+
               <PivotTableContainer data = {this.mCSVData} />
             </div>}
-            
-          <div style={{ float:'left', clear: 'both' }}
-            ref={(el) => { this.messagesEnd = el; }} />
         </div>
 
 
