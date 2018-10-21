@@ -1,4 +1,5 @@
 import { Parser } from 'csv-parse';
+import { max } from 'd3';
 
 export class CSVUtils {
   // PRIVATE VARS
@@ -7,7 +8,7 @@ export class CSVUtils {
   }
 
   // projects an attribute from the data
-  projectAttribute(aCurrentData, aPrimaryKeyIndex, aNumberDataIndex) {
+  projectAttribute(aCurrentData, aPrimaryKeyIndex, aNumberDataIndex, aMaxElements) {
     if (aCurrentData.length >= 2) {
       var tags = aCurrentData[0];
 
@@ -17,7 +18,13 @@ export class CSVUtils {
       var dataStrings = [];
       var dataKeyStrings = [];
 
+      var count = 0;
       for (var i = 1; i < aCurrentData.length; i++) {
+        if( count > aMaxElements) break;
+        if( aCurrentData[i] == null || aCurrentData[i].length < max( aNumberDataIndex, aPrimaryKeyIndex  )) continue;
+
+        count++;
+
         dataStrings.push(aCurrentData[i][aNumberDataIndex]);
         dataKeyStrings.push(aCurrentData[i][aPrimaryKeyIndex]);
       }

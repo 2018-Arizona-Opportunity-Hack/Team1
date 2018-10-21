@@ -5,11 +5,11 @@ import Chart from './Graphs';
 import { CSVUtils } from './csv-utils/csvParseUtils';
 
 import FileDragAndDrop from './FileDragAndDrop';
-import PivotTableContainer from './pivot';
+//import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
-const data = [['attribute', 'attribute2'], ['value1', 'value2']];
+//const data = [['attribute', 'attribute2'], ['value1', 'value2']];
 
 class MainApp extends React.Component {
 
@@ -91,6 +91,8 @@ class MainApp extends React.Component {
 
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
+        //console.log(theCSVData); // eslint-disable-line
+
         that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, 7, 10);
         this.getChartData();
       });
@@ -170,7 +172,6 @@ class MainApp extends React.Component {
           <div style={{ float:'left', clear: 'both' }}
             ref={(el) => { this.messagesEnd = el; }} />
         </div>
-        <PivotTableContainer data={data} />
       </div>
     );
   }
