@@ -5,11 +5,7 @@ import Chart from './Graphs';
 import { CSVUtils } from './csv-utils/csvParseUtils';
 
 import FileDragAndDrop from './FileDragAndDrop';
-<<<<<<< HEAD
-//import PivotTableContainer from './pivot';
-=======
 import PivotTableContainer from './pivot';
->>>>>>> I want to kill shit
 
 import '../styles/styles.less';
 
