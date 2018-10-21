@@ -134,7 +134,7 @@ class MainApp extends React.Component {
                     <div className='card-body'>
                       <Chart
                         chartData={this.state.chartData}
-                        chartType='cream PIE'
+                        chartType='PIE'
                         location='Massachusetts'
                         legendPosition='bottom'
                       />
