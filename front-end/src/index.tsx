@@ -4,6 +4,7 @@ import Chart from './Graphs';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+import { CSSTransition } from 'react-transition-group';
 
 import FileDragAndDrop from './FileDragAndDrop';
 import PivotTableContainer from './pivot';
@@ -112,45 +113,66 @@ class MainApp extends React.Component<{}, State> {
                         <div className = "quickstat slide">
                             <div className="quick-stats-container">
                                 <div className="card-deck mb-5 text-center width-100-percent mr0 ml0">
-                                    <div className="card mb-5 box-shadow">
-                                        <div className="card-header">
-                                            <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
+                                    <CSSTransition
+                                        in={this.state.files.length < 1}
+                                        timeout={500}
+                                        classNames='card1'
+                                        unmountOnExit
+                                    >
+                                        <div className="card mb-5 box-shadow">
+                                            <div className="card-header">
+                                                <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
+                                            </div>
+                                            <div className="card-body">
+                                                <Chart 
+                                                    chartData={this.state.chartData}
+                                                    chartType='BAR'
+                                                    location="Massachusetts"
+                                                    legendPosition="bottom"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="card-body">
-                                            <Chart 
-                                                chartData={this.state.chartData}
-                                                chartType='BAR'
-                                                location="Massachusetts"
-                                                legendPosition="bottom"
-                                            />
+                                    </CSSTransition>
+                                    <CSSTransition>
+                                        in={this.state.files.length < 1}
+                                        timeout={500}
+                                        classNames='card1'
+                                        unmountOnExit
+                                    >
+                                        <div className="card mb-5 box-shadow">
+                                            <div className="card-header">
+                                                <h4 className="my-0 font-weight-normal"> Line Chart </h4>
+                                            </div>
+                                            <div className="card-body">
+                                                <Chart 
+                                                    chartData={this.state.chartData}
+                                                    chartType='LINE'
+                                                    location="Massachusetts"
+                                                    legendPosition="bottom"
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="card mb-5 box-shadow">
-                                        <div className="card-header">
-                                            <h4 className="my-0 font-weight-normal"> Line Chart </h4>
+                                    </CSSTransition>
+                                    <CSSTransition>
+                                        in={this.state.files.length < 1}
+                                        timeout={500}
+                                        classNames='card1'
+                                        unmountOnExit
+                                    >
+                                        <div className="card mb-5 box-shadow">
+                                            <div className="card-header">
+                                                <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
+                                            </div>
+                                            <div className="card-body">
+                                                <Chart 
+                                                    chartData={this.state.chartData}
+                                                    chartType='PIE'
+                                                    location="Massachusetts"
+                                                    legendPosition="bottom"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="card-body">
-                                            <Chart 
-                                                chartData={this.state.chartData}
-                                                chartType='LINE'
-                                                location="Massachusetts"
-                                                legendPosition="bottom"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="card mb-5 box-shadow">
-                                        <div className="card-header">
-                                            <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <Chart 
-                                                chartData={this.state.chartData}
-                                                chartType='PIE'
-                                                location="Massachusetts"
-                                                legendPosition="bottom"
-                                            />
-                                        </div>
-                                    </div>
+                                    </CSSTransition>
                                 </div>
                             </div>
                         </div>}
