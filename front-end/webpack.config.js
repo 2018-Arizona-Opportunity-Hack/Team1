@@ -22,6 +22,23 @@ module.exports = {
                 use: [ { loader: 'ts-loader' } ],
             },
             {
+                test: /\.(js|jsx)$/,
+                  exclude: /(node_modules)/,
+                  use: [
+                    {
+                      loader: 'babel-loader',
+                      options: {
+                        presets: ['react']
+                      }
+                    }
+                  ]
+              },
+            {
+                test:  /\.js$/,
+                exclude: /node_modules/,
+                use: ['eslint-loader']
+            },
+            {
                 test: /\.(css|less)$/,
                 use: [
                     { loader: 'style-loader' },

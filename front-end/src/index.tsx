@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3'; 
 
 import FileDragAndDrop from './FileDragAndDrop';
-// import PivotTableContainer from './pivot';
+//import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
@@ -19,9 +19,13 @@ interface State {
 const data = [['attribute', 'attribute2'], ['value1', 'value2']];
 
 class MainApp extends React.Component<{}, State> {
+    mCSVUtils: CSVUtils;
+
     constructor(props: any) {
         super(props);
         
+        this.mCSVUtils = new CSVUtils();
+
         this.returnFileList = this.returnFileList.bind(this);
         this.state = ({
             files: [],
@@ -35,6 +39,7 @@ class MainApp extends React.Component<{}, State> {
         });
     }
 
+<<<<<<< HEAD
     componentWillMount(){
         this.getChartData();
       }
@@ -69,17 +74,82 @@ class MainApp extends React.Component<{}, State> {
           }
         });
       }
+=======
+    componentDidUpdate() {
+        if( this.state.files.length != 0 )
+        {
+            this.mCSVUtils.readCSV( this.state.files[0], ( theCSVData : any ) =>
+            {
+                console.log(theCSVData);
+            });
+        }
+    }
+>>>>>>> 269c70a1d1fef25e6c4b731985972872cb6766cc
 
     render() {
-        // test code remove
-        // var mCSVUtil: CSVUtils = new CSVUtils();
-        // mCSVUtil.readCSV("./FL_insurance_sample.csv");
         return (
+<<<<<<< HEAD
             <div className='wrapper'>
                 <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />
                 {/* <PivotTableContainer data={data}/> */}
                 <Chart chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+=======
+            <div>
+                <div className="dragger" >
+                    <div className='wrapper'>
+                        {<FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} /> }
+                    </div>
+                </div>
+
+                <div>
+                    <nav className="site-header sticky-top py-1">
+                    <div className="container d-flex flex-column flex-md-row justify-content-between">
+                        <a className="py-6 d-none d-md-inline-block" href="#"> . </a>
+                    </div>
+                    </nav>
+
+                    <div className="overlay position-relative overflow-hidden p-2 p-md-5 m-md-3 text-center bg-light">                    
+                        <div className="col-md-5 p-lg-5 mx-auto my-5">
+                            <h1 className="display-4 font-weight-normal"> Progress Tracker </h1>
+                            <p className="lead font-weight-normal"> Drag a CSV File to the Screen To Fuck Your Mom!</p>
+                        </div>
+                        <div className="product-device box-shadow d-none d-md-block"></div>
+                        <div className="product-device product-device-2 box-shadow d-none d-md-block"></div>
+                    </div>
+
+                    <div className = "quickstat">
+                    <div className=".quick-stats-container">
+                        <div className="card-deck mb-5 text-center">
+                            <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                        <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Line Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                        <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> 269c70a1d1fef25e6c4b731985972872cb6766cc
             </div>
+        </div>
+        </div>
         );
     }
 }

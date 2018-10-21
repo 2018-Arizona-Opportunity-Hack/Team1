@@ -1,9 +1,10 @@
+/*
 import * as React from 'react';
 import PivotTableUI from 'react-pivottable/PivotTableUI';
 
 import 'react-pivottable/pivottable.css';
 import { TableRenderers } from 'react-pivottable/TableRenderers';
-import { Plot } from './react-plotly';
+// import { Plot } from './react-plotly';
 import { createPlotlyRenderers } from 'react-pivottable/PlotlyRenderers';
 
 
@@ -12,6 +13,8 @@ type DataFrame = any;
 interface PivotTableState {
     data: DataFrame;
 }
+
+class Plot {}
 
 const PlotlyRenderers = createPlotlyRenderers(Plot);
 
@@ -41,3 +44,4 @@ class PivotTableContainer extends React.Component<any, PivotTableState> {
 }
 
 export default PivotTableContainer;
+*/
