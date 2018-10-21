@@ -90,7 +90,8 @@ class MainApp extends React.Component {
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
         //console.log(theCSVData); // eslint-disable-line
-
+        theCSVData.pop();
+        that.data = theCSVData;
         that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, 7, 10);
         this.getChartData();
       });
@@ -166,7 +167,7 @@ class MainApp extends React.Component {
                   </div>
                 </div>
               </div>
-              <PivotTableContainer data={[this.state.chartData.labels, this.state.chartData.datasets]} />
+              <PivotTableContainer data={this.data} />
             </div>
           }
           <div style={{ float:'left', clear: 'both' }}
