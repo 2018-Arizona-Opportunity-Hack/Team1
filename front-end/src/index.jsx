@@ -68,7 +68,7 @@ class MainApp extends React.Component {
     componentDidUpdate() {
         if( this.state.files.length != 0 )
         {
-            this.mCSVUtils.readCSV( this.state.files[0], ( theCSVData : any ) =>
+            this.mCSVUtils.readCSV( this.state.files[0], ( theCSVData ) =>
             {
                 console.log(theCSVData);
             });
@@ -80,7 +80,7 @@ class MainApp extends React.Component {
             <div>
                 <div className="dragger" >
                     <div className='wrapper'>
-                        {<FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} /> }
+                        {<FileDragAndDrop returnFileList={(fileList) => this.returnFileList(fileList)} /> }
                     </div>
                 </div>
 
