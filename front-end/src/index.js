@@ -9,8 +9,6 @@ import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
-//const data = [['attribute', 'attribute2'], ['value1', 'value2']];
-
 class MainApp extends React.Component {
 
   constructor(props) {
@@ -103,21 +101,17 @@ class MainApp extends React.Component {
     return (
       <div className = { !this.state.loadingVisible ? '' : 'loadingBackground' }>
         { !this.state.loadingVisible ? null : <div className = 'loader' /> }
-
-        <div className='dragger' >
-          <div className='wrapper'>
-            {<FileDragAndDrop returnFileList={(fileList) => this.returnFileList(fileList)} /> }
-          </div>
-        </div>
-
         <div>
           <nav className='site-header sticky-top py-1'>
-            <div className='container d-flex flex-column flex-md-row justify-content-between'>
-              <a className='py-6 d-none d-md-inline-block' href='#'> . </a>
-            </div>
+            <div className='container d-flex flex-column flex-md-row justify-content-between' />
           </nav>
 
           <div className='overlay position-relative overflow-hidden p-2 p-md-5 m-md-3 text-center bg-light'>
+            <div className='dragger' >
+              <div className='wrapper'>
+                {<FileDragAndDrop returnFileList={(fileList) => this.returnFileList(fileList)} /> }
+              </div>
+            </div>
             <div className='col-md-5 p-lg-5 mx-auto my-5'>
               <h1 className='display-4 font-weight-normal'> Progress Tracker </h1>
               <p className='lead font-weight-normal'> Drag a CSV File to the Screen To Fuck Your Mom!</p>
