@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 
 import FileDragAndDrop from './FileDragAndDrop';
-//import PivotTableContainer from './pivot';
+import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
@@ -38,9 +38,9 @@ class MainApp extends React.Component<{}, State> {
         });
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.getChartData();
-      }
+    }
 
     getChartData(){
         // Ajax calls here
@@ -155,6 +155,7 @@ class MainApp extends React.Component<{}, State> {
                             </div>
                         </div>}
                 </div>
+                <PivotTableContainer data={data} />
             </div>
         );
     }
