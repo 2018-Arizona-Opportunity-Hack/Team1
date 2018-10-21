@@ -39,7 +39,6 @@ class MainApp extends React.Component<{}, State> {
         });
     }
 
-<<<<<<< HEAD
     componentWillMount(){
         this.getChartData();
       }
@@ -74,7 +73,6 @@ class MainApp extends React.Component<{}, State> {
           }
         });
       }
-=======
     componentDidUpdate() {
         if( this.state.files.length != 0 )
         {
@@ -84,16 +82,9 @@ class MainApp extends React.Component<{}, State> {
             });
         }
     }
->>>>>>> 269c70a1d1fef25e6c4b731985972872cb6766cc
 
     render() {
         return (
-<<<<<<< HEAD
-            <div className='wrapper'>
-                <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />
-                {/* <PivotTableContainer data={data}/> */}
-                <Chart chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
-=======
             <div>
                 <div className="dragger" >
                     <div className='wrapper'>
@@ -146,7 +137,6 @@ class MainApp extends React.Component<{}, State> {
                         </div>
                     </div>
                 </div>
->>>>>>> 269c70a1d1fef25e6c4b731985972872cb6766cc
             </div>
         </div>
         </div>
