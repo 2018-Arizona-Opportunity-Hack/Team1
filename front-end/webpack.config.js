@@ -7,13 +7,13 @@ const smp = new SpeedMeasurePlugin();
 
 module.exports = smp.wrap({
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json']
+        extensions: [.js', '.json']
     },
     node: {
         fs: 'empty'
     },
     mode: 'production',
-    entry: './src/index.tsx',
+    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
