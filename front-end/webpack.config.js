@@ -1,9 +1,11 @@
 /* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
-module.exports = {
+const smp = new SpeedMeasurePlugin();
+
+module.exports = smp.wrap({
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
     },
@@ -19,20 +21,24 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                exclude: /(node_modules)/,
-                use: [
+                test: /\.(js|jsx)$/,
+                  exclude: /(node_modules)/,
+                  use: [
                     {
-                        loader: 'ts-loader',
-                        options: {
-                            onlyCompileBundledFiles: true,
-                        },
-                    },
-                ],
+                      loader: 'babel-loader',
+                      options: {
+                        presets: ['react']
+                      }
+                    }
+                  ]
+            },
+            {
+                test:  /\.js$/,
+                exclude: /node_modules/,
+                use: ['eslint-loader']
             },
             {
                 test: /\.(css|less)$/,
-                exclude: /(node_modules)/,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
@@ -44,8 +50,7 @@ module.exports = {
     performance: { hints: false },
     plugins: [
         new webpack.WatchIgnorePlugin([
-            /\.js$/,
-            /\.d\.ts$/
+            /\.js$/
         ])
     ]
-};
+});
