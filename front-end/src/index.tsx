@@ -3,7 +3,7 @@ import Chart from './Graphs';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as d3 from 'd3'; 
+import * as d3 from 'd3';
 
 import FileDragAndDrop from './FileDragAndDrop';
 //import PivotTableContainer from './pivot';
@@ -29,7 +29,7 @@ class MainApp extends React.Component<{}, State> {
         this.state = ({
             files: [],
             chartData: {}
-        })
+        });
     }
 
     returnFileList(fileList: File[]) {
@@ -109,7 +109,7 @@ class MainApp extends React.Component<{}, State> {
 
                     {this.state.files.length < 1 ? 
                         null : 
-                        <div className = "quickstat">
+                        <div className = "quickstat slide">
                             <div className="quick-stats-container">
                                 <div className="card-deck mb-5 text-center width-100-percent mr0 ml0">
                                     <div className="card mb-5 box-shadow">
