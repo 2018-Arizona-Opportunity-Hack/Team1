@@ -3,7 +3,6 @@ import PivotTableUI from 'react-pivottable/PivotTableUI';
 
 import 'react-pivottable/pivottable.css';
 import { TableRenderers } from 'react-pivottable/TableRenderers';
-import { Plot } from 'react-plotly';
 import { createPlotlyRenderers } from 'react-pivottable/PlotlyRenderers';
 
 
