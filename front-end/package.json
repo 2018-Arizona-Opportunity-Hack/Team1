@@ -46,6 +46,7 @@
     "react-dropzone": "^6.2.4",
     "react-pivottable": "^0.7.0",
     "react-plotly.js": "^2.2.0",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "webpack-bundle-analyzer": "^3.0.3"
   }
 }
