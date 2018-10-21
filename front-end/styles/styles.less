@@ -1,5 +1,6 @@
 @import (less) '../node_modules/basscss/css/basscss.css';
 
+// --------------------------ANIMATION STYLING---------------------------
 @keyframes slide-in {
   from {
     margin-left: -100%
@@ -14,6 +15,40 @@
   animation-name: slide-in;
   transition-timing-function: ease-in-out;
 }
+
+.card1-enter {
+  opacity: 0.01;
+  transform: scale(0.5) translateX(-100%);
+}
+
+.card1-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+  transition: all 500ms ease-in-out;
+}
+
+.card2-enter {
+  opacity: 0.01;
+  transform: scale(0.5) translateX(-100%);
+}
+
+.card2-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+  transition: all 1000ms ease-in-out;
+}
+
+.card3-enter {
+  opacity: 0.01;
+  transform: scale(0.5) translateX(-100%);
+}
+
+.card3-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+  transition: all 1500ms ease-in-out;
+}
+// -------------------------ANIMATION STYLING----------------------------
 
 .width-100-percent {
   width: 100%;

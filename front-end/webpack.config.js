@@ -1,5 +1,7 @@
 /* eslint-disable */
 const path = require('path');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     resolve: {
@@ -30,6 +32,7 @@ module.exports = {
             },
             {
                 test: /\.(css|less)$/,
+                exclude: /(node_modules)/,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
@@ -38,5 +41,11 @@ module.exports = {
             }
         ]
     },
-    performance: { hints: false }
+    performance: { hints: false },
+    plugins: [
+        new webpack.WatchIgnorePlugin([
+            /\.js$/,
+            /\.d\.ts$/
+        ])
+    ]
 };
