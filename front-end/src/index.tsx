@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3'; 
 
 import FileDragAndDrop from './FileDragAndDrop';
-import PivotTableContainer from './pivot';
+// import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
@@ -36,9 +36,9 @@ class MainApp extends React.Component<{}, State> {
         // var mCSVUtil: CSVUtils = new CSVUtils();
         // mCSVUtil.readCSV("./FL_insurance_sample.csv");
         return (
-            <div>
-                {/* <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} /> */}
-                <PivotTableContainer data={data}/>
+            <div className='wrapper'>
+                <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />
+                {/* <PivotTableContainer data={data}/> */}
             </div>
         );
     }

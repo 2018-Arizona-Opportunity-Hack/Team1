@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "start": "lite-server"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-react": "^7.10.0",
     "less-loader": "^4.1.0",
+    "lite-server": "^2.4.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "style-loader": "^0.21.0",
