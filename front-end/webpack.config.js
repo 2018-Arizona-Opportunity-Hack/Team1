@@ -1,9 +1,10 @@
 /* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
@@ -38,5 +39,6 @@ module.exports = {
             }
         ]
     },
-    performance: { hints: false }
+    performance: { hints: false },
+    plugins: [new BundleAnalyzerPlugin()]
 };
