@@ -44,10 +44,6 @@ class MainApp extends React.Component {
     if(this.mTableData === null) return;
     if(!this.mMapNeedsRender) return;
 
-    if(this.messagesEnd !== null) {
-      this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-    }
-
     this.mMapNeedsRender = false;
 
     var numValues = this.mTableData.keyStrings.length;
@@ -204,9 +200,6 @@ class MainApp extends React.Component {
                   </ul>
                 </div>
               </div>
-              
-              <div style={{ float:'left', clear: 'both' }}
-                ref={(el) => { this.messagesEnd = el; }} />
 
               <PivotTableContainer data = {this.mCSVData} />
             </div>}
