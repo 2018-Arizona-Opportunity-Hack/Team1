@@ -157,13 +157,18 @@ class MainApp extends React.Component {
                       />
                     </div>
                   </div>
-                  <div className='card-body'>
-                    <Chart
-                      chartData={this.state.chartData}
-                      chartType='PIE'
-                      title='Bar Chart Data'
-                      legendPosition='bottom'
-                    />
+                  <div className='card mb-5 box-shadow'>
+                    <div className='card-header'>
+                      <h4 className='my-0 font-weight-normal'> Pie Chart </h4>
+                    </div>
+                    <div className='card-body'>
+                      <Chart
+                        chartData={this.state.chartData}
+                        chartType='PIE'
+                        title='Bar Chart Data'
+                        legendPosition='bottom'
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
