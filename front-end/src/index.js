@@ -1,14 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { CSVUtils } from './csv-utils/csvParseUtils';
+
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import Chart from './Graphs';
+import { CSVUtils } from './csv-utils/csvParseUtils';
 
 import FileDragAndDrop from './FileDragAndDrop';
-// import PivotTableContainer from './pivot';
+import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
+const data = [['attribute', 'attribute2'], ['value1', 'value2']];
+
 class MainApp extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -17,63 +21,87 @@ class MainApp extends React.Component {
     this.returnFileList = this.returnFileList.bind(this);
     this.state = ({
       files: [],
-      chartData: {}
+      chartData: {},
+      loadingVisible: false,
+      chartVisible: false
     });
   }
 
   returnFileList(fileList) {
+    this.mMapNeedsRender = true;
+
     this.setState((state) => {
-      return { files: fileList.concat(state.files) };
+      return {
+        loadingVisible: true,
+        files: fileList.concat(state.files) };
     });
   }
 
   componentWillMount() {
-    this.getChartData();
   }
 
   getChartData() {
-    // Ajax calls here
+    if(this.mTableData === null) return;
+    if(!this.mMapNeedsRender) return;
+
+    if(this.messagesEnd !== null) {
+      this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    this.mMapNeedsRender = false;
+
+    var numValues = this.mTableData.keyStrings.length;
     this.setState({
       chartData:{
-        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        labels: this.mTableData.keyStrings,
         datasets:[
           {
-            label:'Population',
-            data:[
-              617594,
-              181045,
-              153060,
-              106519,
-              105162,
-              95072
-            ],
-            backgroundColor:[
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)'
-            ]
+            label: this.mTableData.dataHeader,
+            data: this.mTableData.dataStrings,
+            backgroundColor: this.generateRandomRgbaValues(numValues, .6)
           }
         ]
-      }
+      },
+      loadingVisible: false,
+      chartVisible: true
     });
   }
+
+  generateRandomRgbaValues(aNumValues, aOpacity)
+  {
+    var retStrings = [];
+
+    for (var i = 0; i < aNumValues; i++) {
+
+      var r = Math.floor(Math.random () * 255);
+      var g = Math.floor(Math.random () * 255);
+      var b = Math.floor(Math.random () * 255);
+
+      var currString = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + aOpacity + ')';
+      retStrings.push(currString);
+    }
+
+    return retStrings;
+  }
+
   componentDidUpdate() {
     if(this.state.files.length !== 0)
     {
+      var that = this;
+
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
-        console.log(theCSVData); // eslint-disable-line
+        that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, 7, 10);
+        this.getChartData();
       });
     }
   }
 
   render() {
     return (
-      <div>
+      <div className = { !this.state.loadingVisible ? '' : 'loadingBackground' }>
+        { !this.state.loadingVisible ? null : <div className = 'loader' /> }
+
         <div className='dragger' >
           <div className='wrapper'>
             {<FileDragAndDrop returnFileList={(fileList) => this.returnFileList(fileList)} /> }
@@ -96,7 +124,7 @@ class MainApp extends React.Component {
             <div className='product-device product-device-2 box-shadow d-none d-md-block' />
           </div>
 
-          {this.state.files.length < 1 ?
+          {!this.state.chartVisible ?
             null :
             <div className = 'quickstat slide'>
               <div className='quick-stats-container'>
@@ -109,7 +137,7 @@ class MainApp extends React.Component {
                       <Chart
                         chartData={this.state.chartData}
                         chartType='BAR'
-                        location='Massachusetts'
+                        title='Bar Chart Data'
                         legendPosition='bottom'
                       />
                     </div>
@@ -122,29 +150,27 @@ class MainApp extends React.Component {
                       <Chart
                         chartData={this.state.chartData}
                         chartType='LINE'
-                        location='Massachusetts'
+                        title='Line Chart Data'
                         legendPosition='bottom'
                       />
                     </div>
                   </div>
-                  <div className='card mb-5 box-shadow'>
-                    <div className='card-header'>
-                      <h4 className='my-0 font-weight-normal'> Pie Chart </h4>
-                    </div>
-                    <div className='card-body'>
-                      <Chart
-                        chartData={this.state.chartData}
-                        chartType='PIE'
-                        location='Massachusetts'
-                        legendPosition='bottom'
-                      />
-                    </div>
+                  <div className='card-body'>
+                    <Chart
+                      chartData={this.state.chartData}
+                      chartType='PIE'
+                      title='Bar Chart Data'
+                      legendPosition='bottom'
+                    />
                   </div>
                 </div>
               </div>
             </div>}
+
+          <div style={{ float:'left', clear: 'both' }}
+            ref={(el) => { this.messagesEnd = el; }} />
         </div>
-        {/* <PivotTableContainer data={data} /> */}
+        <PivotTableContainer data={data} />
       </div>
     );
   }
