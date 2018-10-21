@@ -16,9 +16,13 @@ interface State {
 const data = [['attribute', 'attribute2'], ['value1', 'value2']];
 
 class MainApp extends React.Component<{}, State> {
+    mCSVUtils: CSVUtils;
+
     constructor(props: any) {
         super(props);
         
+        this.mCSVUtils = new CSVUtils();
+
         this.returnFileList = this.returnFileList.bind(this);
         this.state = {
             files: []
@@ -31,16 +35,18 @@ class MainApp extends React.Component<{}, State> {
         });
     }
 
+    componentDidUpdate() {
+        if( this.state.files.length != 0 )
+        {
+            this.mCSVUtils.readCSV( this.state.files[0], ( theCSVData : any ) =>
+            {
+                console.log(theCSVData);
+            });
+        }
+    }
+
     render() {
-        // test code remove
-        // var mCSVUtil: CSVUtils = new CSVUtils();
-        // mCSVUtil.readCSV("./FL_insurance_sample.csv");
-        return (
-            <div className='wrapper'>
-                <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />
-                {/* <PivotTableContainer data={data}/> */}
-            </div>
-        );
+        return <FileDragAndDrop returnFileList={(fileList: File[]) => this.returnFileList(fileList)} />;
     }
 }
 
