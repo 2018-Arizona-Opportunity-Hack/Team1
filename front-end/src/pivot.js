@@ -20,12 +20,14 @@ class PivotTableContainer extends React.Component {
 
   render() {
     return (
-      <PivotTableUI
-        data={this.data}
-        onchange={(s) => this.setState(s)}
-        renderers={Object.assign({}, TableRenderers, PlotlyRenderers)}
-        {...this.state}
-      />
+      <div style={{ marginRight: 15, marginLeft: 15, marginBottom: 15 }}>
+        <PivotTableUI
+          data={this.data}
+          onchange={(s) => this.setState(s)}
+          renderers={Object.assign({}, TableRenderers, PlotlyRenderers)}
+          {...this.state}
+        />
+      </div>
     );
 
   }

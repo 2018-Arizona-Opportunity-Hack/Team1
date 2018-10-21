@@ -114,7 +114,7 @@ class MainApp extends React.Component {
             </div>
             <div className='col-md-5 p-lg-5 mx-auto my-5'>
               <h1 className='display-4 font-weight-normal'> Progress Tracker </h1>
-              <p className='lead font-weight-normal'> Drag a CSV File to the Screen To Fuck Your Mom!</p>
+              <p className='lead font-weight-normal'> Drag a CSV File Here!</p>
             </div>
             <div className='product-device box-shadow d-none d-md-block' />
             <div className='product-device product-device-2 box-shadow d-none d-md-block' />
@@ -166,12 +166,12 @@ class MainApp extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>}
-
+              <PivotTableContainer data={[this.state.chartData.labels, this.state.chartData.datasets]} />
+            </div>
+          }
           <div style={{ float:'left', clear: 'both' }}
             ref={(el) => { this.messagesEnd = el; }} />
         </div>
-        <PivotTableContainer data={[['fuck', 'you'], ['piece of', 'shit']]} />
       </div>
     );
   }
