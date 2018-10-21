@@ -5,7 +5,11 @@ import Chart from './Graphs';
 import { CSVUtils } from './csv-utils/csvParseUtils';
 
 import FileDragAndDrop from './FileDragAndDrop';
+<<<<<<< HEAD
 //import PivotTableContainer from './pivot';
+=======
+import PivotTableContainer from './pivot';
+>>>>>>> I want to kill shit
 
 import '../styles/styles.less';
 
@@ -177,6 +181,7 @@ class MainApp extends React.Component {
           <div style={{ float:'left', clear: 'both' }}
             ref={(el) => { this.messagesEnd = el; }} />
         </div>
+        <PivotTableContainer data={[['fuck', 'you'], ['piece of', 'shit']]} />
       </div>
     );
   }

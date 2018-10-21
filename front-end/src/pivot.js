@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 import 'react-pivottable/pivottable.css';
-import { PivotTableUI, createPlotlyRenderers, TableRenderers } from 'react-pivottable';
-import { Plot } from 'react-plotly.js';
+import PivotTableUI from 'react-pivottable/PivotTableUI';
+import TableRenderers from 'react-pivottable/TableRenderers';
+import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
+import Plot from 'react-plotly.js';
 
 const PlotlyRenderers = createPlotlyRenderers(Plot);
 
