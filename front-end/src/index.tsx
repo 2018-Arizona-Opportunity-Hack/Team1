@@ -69,8 +69,39 @@ class MainApp extends React.Component<{}, State> {
                         <div className="product-device box-shadow d-none d-md-block"></div>
                         <div className="product-device product-device-2 box-shadow d-none d-md-block"></div>
                     </div>
+
+                    <div className = "quickstat">
+                    <div className=".quick-stats-container">
+                        <div className="card-deck mb-5 text-center">
+                            <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                        <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Line Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                        <div className="card mb-5 box-shadow">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        </div>
         );
     }
 }
