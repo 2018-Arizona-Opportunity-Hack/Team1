@@ -116,6 +116,7 @@ class MainApp extends React.Component {
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
         that.mCSVData = theCSVData;
+        that.mCSVData.pop();
         that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, this.mAttributeProjection, 10);
         this.getChartData();
       });
@@ -203,11 +204,14 @@ class MainApp extends React.Component {
                   </ul>
                 </div>
               </div>
+              <PivotTableContainer data = {this.mCSVData} />
             </div>}
             
           <div style={{ float:'left', clear: 'both' }}
             ref={(el) => { this.messagesEnd = el; }} />
         </div>
+
+
       </div>
     );
   }
