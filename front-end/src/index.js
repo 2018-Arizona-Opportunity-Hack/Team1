@@ -1,20 +1,16 @@
-
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as d3 from 'd3';
-import Chart from './Graphs';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { CSVUtils } from './csv-utils/csvParseUtils';
+import Chart from './Graphs';
 
 import FileDragAndDrop from './FileDragAndDrop';
-import PivotTableContainer from './pivot';
-import { CSVData } from './csv-utils/csvData.model';
+// import PivotTableContainer from './pivot';
 
 import '../styles/styles.less';
 
 const data = [['attribute', 'attribute2'], ['value1', 'value2']];
 
-class MainApp extends React.Component<{}, State> {
-
+class MainApp extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,87 +19,63 @@ class MainApp extends React.Component<{}, State> {
     this.returnFileList = this.returnFileList.bind(this);
     this.state = ({
       files: [],
-      chartData: {},
-      loadingVisible: false,
-      chartVisible: false
+      chartData: {}
     });
   }
 
   returnFileList(fileList) {
-    this.mMapNeedsRender = true;
-
     this.setState((state) => {
-      return {
-        loadingVisible: true,
-        files: fileList.concat(state.files) };
+      return { files: fileList.concat(state.files) };
     });
   }
 
   componentWillMount() {
+    this.getChartData();
   }
 
   getChartData() {
-    if(this.mTableData === null) return;
-    if(!this.mMapNeedsRender) return;
-
-    if(this.messagesEnd !== null) {
-      this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    this.mMapNeedsRender = false;
-
-    var numValues = this.mTableData.keyStrings.length;
+    // Ajax calls here
     this.setState({
       chartData:{
-        labels: this.mTableData.keyStrings,
+        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
         datasets:[
           {
-            label: this.mTableData.dataHeader,
-            data: this.mTableData.dataStrings,
-            backgroundColor: this.generateRandomRgbaValues(numValues, .6)
+            label:'Population',
+            data:[
+              617594,
+              181045,
+              153060,
+              106519,
+              105162,
+              95072
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)'
+            ]
           }
         ]
-      },
-      loadingVisible: false,
-      chartVisible: true
+      }
     });
   }
-
-  generateRandomRgbaValues(aNumValues, aOpacity)
-  {
-    var retStrings = [];
-
-    for (var i = 0; i < aNumValues; i++) {
-
-      var r = Math.floor(Math.random () * 255);
-      var g = Math.floor(Math.random () * 255);
-      var b = Math.floor(Math.random () * 255);
-
-      var currString = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + aOpacity + ')';
-      retStrings.push(currString);
-    }
-
-    return retStrings;
-  }
-
   componentDidUpdate() {
     if(this.state.files.length !== 0)
     {
-      var that = this;
-
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
-        that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, 7, 10);
-        this.getChartData();
+        console.log(theCSVData); // eslint-disable-line
       });
     }
   }
 
   render() {
     return (
-      <div className = { !this.state.loadingVisible ? '' : 'loadingBackground' }>
-        { !this.state.loadingVisible ? null : <div className = 'loader' /> }
-
+      <div>
         <div className='dragger' >
           <div className='wrapper'>
             {<FileDragAndDrop returnFileList={(fileList) => this.returnFileList(fileList)} /> }
@@ -126,7 +98,7 @@ class MainApp extends React.Component<{}, State> {
             <div className='product-device product-device-2 box-shadow d-none d-md-block' />
           </div>
 
-          {!this.state.chartVisible ?
+          {this.state.files.length < 1 ?
             null :
             <div className = 'quickstat slide'>
               <div className='quick-stats-container'>
@@ -139,7 +111,7 @@ class MainApp extends React.Component<{}, State> {
                       <Chart
                         chartData={this.state.chartData}
                         chartType='BAR'
-                        title='Bar Chart Data'
+                        location='Massachusetts'
                         legendPosition='bottom'
                       />
                     </div>
@@ -152,27 +124,29 @@ class MainApp extends React.Component<{}, State> {
                       <Chart
                         chartData={this.state.chartData}
                         chartType='LINE'
-                        title='Line Chart Data'
+                        location='Massachusetts'
                         legendPosition='bottom'
                       />
                     </div>
                   </div>
-                  <div className='card-body'>
-                    <Chart
-                      chartData={this.state.chartData}
-                      chartType='PIE'
-                      title='Bar Chart Data'
-                      legendPosition='bottom'
-                    />
+                  <div className='card mb-5 box-shadow'>
+                    <div className='card-header'>
+                      <h4 className='my-0 font-weight-normal'> Pie Chart </h4>
+                    </div>
+                    <div className='card-body'>
+                      <Chart
+                        chartData={this.state.chartData}
+                        chartType='PIE'
+                        location='Massachusetts'
+                        legendPosition='bottom'
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>}
-
-          <div style={{ float:'left', clear: 'both' }}
-            ref={(el) => { this.messagesEnd = el; }} />
         </div>
-        <PivotTableContainer data={data} />
+        {/* <PivotTableContainer data={data} /> */}
       </div>
     );
   }

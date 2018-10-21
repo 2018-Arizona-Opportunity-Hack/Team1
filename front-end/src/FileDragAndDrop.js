@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
+import PropTypes from 'prop-types';
 
 class FileDragAndDrop extends React.Component {
   constructor(props) {
@@ -38,17 +39,21 @@ class FileDragAndDrop extends React.Component {
     };
 
     return (
-        <Dropzone 
-          className='drop_zone'
-          disableClick
-          onDrop={this.onDrop.bind(this)}
-          onDragEnter={this.onDragEnter.bind(this)}
-          onDragLeave={this.onDragLeave.bind(this)}
-        >
-          {draggingOver && <div style={overlayStyle}>{}</div>}
-        </Dropzone>
+      <Dropzone
+        className='drop_zone'
+        disableClick
+        onDrop={this.onDrop.bind(this)}
+        onDragEnter={this.onDragEnter.bind(this)}
+        onDragLeave={this.onDragLeave.bind(this)}
+      >
+        {draggingOver && <div style={overlayStyle}>{}</div>}
+      </Dropzone>
     );
   }
 }
+
+FileDragAndDrop.propTypes = {
+  returnFileList: PropTypes.func
+};
 
 export default FileDragAndDrop;

@@ -1,17 +1,8 @@
 /* eslint-disable */
 const path = require('path');
-const webpack = require('webpack');
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const webpack = require('webpack');;
 
-const smp = new SpeedMeasurePlugin();
-
-module.exports = smp.wrap({
-    resolve: {
-        extensions: [.js', '.json']
-    },
-    node: {
-        fs: 'empty'
-    },
+module.exports = {
     mode: 'production',
     entry: './src/index.js',
     output: {
@@ -53,4 +44,4 @@ module.exports = smp.wrap({
             /\.js$/
         ])
     ]
-});
+};
