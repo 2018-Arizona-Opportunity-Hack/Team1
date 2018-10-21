@@ -8,74 +8,78 @@ interface Props {
     legendPosition: String;
     displayTitle: Boolean;
     displayLegend: Boolean;
+    chartType: String;
 }
 
-interface State {
-    chartData: Object;
-}
-
-class Chart extends React.Component<Props, State>{
+class Chart extends React.Component<Props>{
     constructor(props: Props){
       super(props);
-      this.state = {
-        chartData:props.chartData
-      }
     }
   
     static defaultProps = {
-      displayTitle:true,
+      displayTitle: true,
       displayLegend: true,
       legendPosition:'right',
       location:'City'
     }
   
-    render(){
+    render() {
+      const { chartData, chartType, displayTitle, displayLegend, legendPosition, location } = this.props;
+      let ChartComponent;
+
+      switch (chartType) {
+        case 'BAR':
+          ChartComponent = <Bar
+            data={chartData}
+            options={{
+              title:{
+                display: displayTitle,
+                text: 'Largest Cities In '+ location,
+                fontSize: 25
+              },
+              legend: {
+                display: displayLegend,
+                position: legendPosition
+              }
+            }}
+          />;
+          break;
+        case 'LINE':
+          ChartComponent = <Line
+            data={chartData}
+            options={{
+              title:{
+                display: displayTitle,
+                text: 'Largest Cities In '+ location,
+                fontSize: 25
+              },
+              legend: {
+                display: displayLegend,
+                position: legendPosition
+              }
+            }}
+          />;
+          break;
+        case 'PIE':
+          ChartComponent = <Pie
+            data={chartData}
+            options={{
+              title:{
+                display: displayTitle,
+                text: 'Largest Cities In '+ location,
+                fontSize: 25
+              },
+              legend:{
+                display: displayLegend,
+                position: legendPosition
+              }
+            }}
+          />;
+          break;
+      }
       return (
         <div className="chart">
-          <Bar
-            data={this.state.chartData}
-            options={{
-              title:{
-                display:this.props.displayTitle,
-                text:'Largest Cities In '+this.props.location,
-                fontSize:25
-              },
-              legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
-              }
-            }}
-          />
-  
-          <Line
-            data={this.state.chartData}
-            options={{
-              title:{
-                display:this.props.displayTitle,
-                text:'Largest Cities In '+this.props.location,
-                fontSize:25
-              },
-              legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
-              }
-            }}
-          />
-  
-          <Pie
-            data={this.state.chartData}
-            options={{
-              title:{
-                display:this.props.displayTitle,
-                text:'Largest Cities In '+this.props.location,
-                fontSize:25
-              },
-              legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
-              }
-            }}
-          />
+          {ChartComponent}
         </div>
       )
     }

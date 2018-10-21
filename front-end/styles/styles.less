@@ -1,5 +1,20 @@
 @import (less) '../node_modules/basscss/css/basscss.css';
 
+@keyframes slide-in {
+  from {
+    margin-bottom: -50%
+  }
+  to {
+    margin-bottom: 0%;
+  }
+}
+
+.slide {
+  animation-duration: 1s;
+  animation-name: slide-in;
+  transition-timing-function: ease-in-out;
+}
+
 .width-100-percent {
   width: 100%;
 }
