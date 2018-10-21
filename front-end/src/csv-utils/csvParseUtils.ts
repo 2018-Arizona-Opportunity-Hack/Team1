@@ -1,5 +1,7 @@
 import { Parser } from 'csv-parse';
 
+import { CSVData } from './csvData.model'
+
 export class CSVUtils
 {
     // PRIVATE VARS
@@ -9,6 +11,35 @@ export class CSVUtils
     constructor() 
     {
         this.mFileReader = new FileReader();
+    }
+
+    // projects an attribute from the data
+    public projectAttribute( aCurrentData : any, aPrimaryKeyIndex : number, aNumberDataIndex : number ) : CSVData
+    {
+        if( aCurrentData.length >= 2 ) {
+            var tags : Array<string> = aCurrentData[0]
+
+            var datatag : string = tags[aNumberDataIndex];
+            var keytag : string = tags[aPrimaryKeyIndex];
+        
+            var dataStrings : Array< string > = [];
+            var dataKeyStrings : Array< string > = [];
+
+            for ( var i = 1 ; i < aCurrentData.length; i++) {
+                dataStrings.push( aCurrentData[i][aNumberDataIndex] );
+                dataKeyStrings.push( aCurrentData[i][aPrimaryKeyIndex] );
+            }
+
+            var theData : CSVData = new CSVData();
+            theData.dataHeader = datatag;
+            theData.keyHeader = keytag;
+            theData.dataStrings = dataStrings;
+            theData.keyStrings = dataKeyStrings;
+
+            return theData;
+        }
+
+        return null;
     }
 
     // NOTE the callback must take the data that is returned from the function

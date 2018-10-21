@@ -53,7 +53,7 @@ class FileDragAndDrop extends React.Component<Props, State> {
           onDragEnter={this.onDragEnter.bind(this)}
           onDragLeave={this.onDragLeave.bind(this)}
         >
-          {draggingOver && <div style={overlayStyle}>{'Drop files...'}</div>}
+          {draggingOver && <div style={overlayStyle}>{}</div>}
         </Dropzone>
     );
   }
