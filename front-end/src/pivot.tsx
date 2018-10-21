@@ -1,3 +1,4 @@
+/*
 import * as React from 'react';
 import PivotTableUI from 'react-pivottable/PivotTableUI';
 
@@ -43,3 +44,4 @@ class PivotTableContainer extends React.Component<any, PivotTableState> {
 }
 
 export default PivotTableContainer;
+*/
