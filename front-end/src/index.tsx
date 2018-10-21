@@ -109,36 +109,36 @@ class MainApp extends React.Component<{}, State> {
                     </div>
 
                     <div className = "quickstat">
-                    <div className=".quick-stats-container">
-                        <div className="card-deck mb-5 text-center">
+                    <div className="quick-stats-container">
+                        <div className="card-deck mb-5 text-center width-100-percent mr0 ml0">
                             <div className="card mb-5 box-shadow">
-                            <div className="card-header">
-                                <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
-                            </div>
-                            <div className="card-body">
+                                <div className="card-header">
+                                    <h4 className="my-0 font-weight-normal"> Bar Chart </h4>
+                                </div>
+                                <div className="card-body">
                                 
+                                </div>
                             </div>
-                        </div>
-                        <div className="card mb-5 box-shadow">
-                            <div className="card-header">
-                                <h4 className="my-0 font-weight-normal"> Line Chart </h4>
-                            </div>
-                            <div className="card-body">
+                            <div className="card mb-5 box-shadow">
+                                <div className="card-header">
+                                    <h4 className="my-0 font-weight-normal"> Line Chart </h4>
+                                </div>
+                                <div className="card-body">
                                 
+                                </div>
                             </div>
-                        </div>
-                        <div className="card mb-5 box-shadow">
-                            <div className="card-header">
-                                <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
-                            </div>
-                            <div className="card-body">
+                            <div className="card mb-5 box-shadow">
+                                <div className="card-header">
+                                    <h4 className="my-0 font-weight-normal"> Pie Chart </h4>
+                                </div>
+                                <div className="card-body">
                                 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         );
     }
