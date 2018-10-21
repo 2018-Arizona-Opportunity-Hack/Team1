@@ -1,5 +1,4 @@
 import { Parser } from 'csv-parse';
-import { max } from 'd3';
 
 export class CSVUtils {
   // PRIVATE VARS
@@ -21,7 +20,7 @@ export class CSVUtils {
       var count = 0;
       for (var i = 1; i < aCurrentData.length; i++) {
         if( count > aMaxElements) break;
-        if( aCurrentData[i] == null || aCurrentData[i].length < max( aNumberDataIndex, aPrimaryKeyIndex  )) continue;
+        if( aCurrentData[i] == null) continue;
 
         count++;
 

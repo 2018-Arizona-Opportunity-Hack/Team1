@@ -23,6 +23,8 @@ class MainApp extends React.Component {
       loadingVisible: false,
       chartVisible: false
     });
+
+    this.mAttributeProjection = 7;
   }
 
   returnFileList(fileList) {
@@ -49,6 +51,7 @@ class MainApp extends React.Component {
     this.mMapNeedsRender = false;
 
     var numValues = this.mTableData.keyStrings.length;
+
     this.setState({
       chartData:{
         labels: this.mTableData.keyStrings,
@@ -63,6 +66,29 @@ class MainApp extends React.Component {
       loadingVisible: false,
       chartVisible: true
     });
+  }
+
+  createDropdown() {
+    var ret = [];
+    var that = this;
+
+    this.mCSVData[0].map((function( data, index ) {
+      ret.push(<button className="dropdown-item" onClick = { (e) => that.onDropdownSelected( e, index ) } key = {index} value={index} > {data} </button>)
+    }));
+
+    return ret;
+  }
+
+  onDropdownSelected( event, index ) {
+    console.log("selecting: " + index); //eslint-disable-line
+
+    if( this.mCSVData == null ) return;
+
+    this.mMapNeedsRender = true;
+    this.mAttributeProjection = index;
+    this.mTableData = this.mCSVUtils.projectAttribute( this.mCSVData, 0, this.mAttributeProjection, 10);
+
+    this.getChartData();
   }
 
   generateRandomRgbaValues(aNumValues, aOpacity)
@@ -89,10 +115,8 @@ class MainApp extends React.Component {
 
       this.mCSVUtils.readCSV(this.state.files[0], (theCSVData) =>
       {
-        //console.log(theCSVData); // eslint-disable-line
-        theCSVData.pop();
-        that.data = theCSVData;
-        that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, 7, 10);
+        that.mCSVData = theCSVData;
+        that.mTableData = that.mCSVUtils.projectAttribute(theCSVData, 0, this.mAttributeProjection, 10);
         this.getChartData();
       });
     }
@@ -167,9 +191,20 @@ class MainApp extends React.Component {
                   </div>
                 </div>
               </div>
-              <PivotTableContainer data={this.data} />
-            </div>
-          }
+
+              <div className="dropdown-style dropdown menu" aria-labelledby="dropdownMenuButton">
+                <div className = "dropdown" >
+                  <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Attribute List
+                  <span className="caret"></span></button>
+                  <ul className="dropdown-menu" onChange = { this.onDropdownSelected } >
+                    { this.state.chartData == null || this.state.chartData.labels == null ? 
+                      null : this.createDropdown()
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>}
+            
           <div style={{ float:'left', clear: 'both' }}
             ref={(el) => { this.messagesEnd = el; }} />
         </div>
