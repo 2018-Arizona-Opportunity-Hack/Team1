@@ -28,3 +28,5 @@
 - Generate reports that can be exported as .pdfs
 - Accumulate and store data
 - User accounts and notifications
+
+# App link: http://excelbutworse.herokuapp.com
